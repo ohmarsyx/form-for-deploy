@@ -5,11 +5,11 @@
     <div class="form-items-container">
       <div class="form-item-flex">
         <div class="form-item">
-          <%= form.label :first_name %><br>
+          <%= form.label :first_name, "First Name" %><br>
           <%= form.text_field :first_name %>
         </div>
         <div class="form-item">
-          <%= form.label :last_name %><br>
+          <%= form.label :last_name, "Last Name" %><br>
           <%= form.text_field :last_name %>
         </div>
       </div>
@@ -37,11 +37,11 @@
       </div>
       <div class="form-item">
         <%= form.label :subject %><br>
-        <%= form.select :subject, ["HTML", "CSS", "JS"] %>
+        <%= form.select :subject, options_for_select([["Choose your subject", nil], "HTML", "CSS", "JS"], disabled: "Choose your subject") %>
       </div>
     </div>
     <div>
-      <%= form.submit "Create"%>
+      <%= form.submit "Submit", class: "submit-button"%>
     </div>
   </div>
 <% end %>
