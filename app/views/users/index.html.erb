@@ -1,16 +1,18 @@
 <h1>Users</h1>
 <%= link_to 'Registration', '/users/new' %>
 <ul>
-  <% @users.each_with_index do |user, index| %>
-    <p style="font-size: 1.25rem; font-weight: 600"><%= index+1 %>)</p>
-    <div style="display: flex; flex-direction: column">
-      <li><%= user.first_name %> <%= user.last_name %></li>
-      <li><%= user.birthday %></li>
-      <li><%= user.gender %></li>
-      <li><%= user.email %></li>
-      <li><%= user.phone %></li>
-      <li><%= user.subject %></li>
-      <p><%= link_to "Destroy", user_path(user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></p>
-    </div>
-  <% end %>
+  <div class="ul-container">
+    <% @users.each_with_index do |user, index| %>
+      <p style="font-size: 1.25rem; font-weight: 600"><%= index+1 %>)</p>
+      <div style="display: flex; flex-direction: column">
+        <li><%= user.first_name %> <%= user.last_name %></li>
+        <li><%= user.birthday %></li>
+        <li><%= user.gender %></li>
+        <li><%= user.email %></li>
+        <li><%= user.phone %></li>
+        <li><%= user.subject %></li>
+        <p><%= link_to "Destroy", user_path(user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></p>
+      </div>
+    <% end %>
+  </div>
 </ul>
