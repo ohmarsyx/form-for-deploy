@@ -1,1 +1,34 @@
-<h1>New User</h1>
+<h1>Register From</h1>
+<%= form_with model: @user, local: true do |form| %>
+  <div>
+    <%= form.label :first_name %><br>
+    <%= form.text_field :first_name %>
+  </div>
+  <div>
+    <%= form.label :last_name %><br>
+    <%= form.text_field :last_name %>
+  </div>
+  <div>
+    <%= form.label :birthday %><br>
+    <%= form.date_field :birthday, start_year: 1800, end_year: Time.now.year %>
+  </div>
+  <div>
+    <%= form.label :gender %><br>
+    <%= form.collection_radio_buttons :gender, User.genders, :first, :first %>
+  </div>
+  <div>
+    <%= form.label :email %><br>
+    <%= form.email_field :email %>
+  </div>
+  <div>
+    <%= form.label :phone %><br>
+    <%= form.telephone_field :phone %>
+  </div>
+  <div>
+    <%= form.label :subject %><br>
+    <%= form.select :subject, ["HTML", "CSS", "JS"] %>
+  </div>
+  <div>
+    <%= form.submit "Create"%>
+  </div>
+<% end %>
