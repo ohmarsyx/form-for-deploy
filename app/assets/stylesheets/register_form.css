@@ -89,5 +89,6 @@ form {
     }
     .form-container {
         border-radius: 0;
+        overflow-y: auto;
     }
 }
