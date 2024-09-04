@@ -51,10 +51,10 @@ ul {
   .ul-container {
     display: flex;
     flex-direction: row;
-    min-width: 300px;
+    min-width: 340px;
     gap: 1rem;
-    padding: 1rem 2rem 1rem 1rem;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 1.5rem 2rem 1rem 1rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
     border-radius: 1rem;
     justify-content: center;
   }
@@ -64,6 +64,7 @@ ul {
   flex-direction: column;
   padding: 1rem;
   gap: 1rem;
+  overflow-y: auto;
 }
 .register-button {
   width: 200px;
