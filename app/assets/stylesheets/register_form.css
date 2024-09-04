@@ -6,11 +6,13 @@ form {
 .form-container {
   display: flex;
   flex-direction: column;
-  width: 40%;
   padding: 3rem;
   background-color: white;
   border-radius: 2rem;
-  gap: 1rem;
+  gap: 2rem;
+  min-width: 400px;
+  width: 40%;
+  max-width: 800px;
 }
 .form-items-container {
   width: 100%;
@@ -19,7 +21,7 @@ form {
   gap: 1rem;
 }
 .form-container h1 {
-    font-size: 2.5rem;
+  font-size: 2.5rem;
 }
 .form-item-flex {
   display: flex;
@@ -29,7 +31,7 @@ form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 0.7rem;
   label {
     font-size: 1.2rem;
   }
@@ -38,7 +40,7 @@ form {
     padding: 1rem;
     border-radius: 0.3rem;
     border: none;
-    background-color: #f8f8f8;
+    background-color: #f0f0f0;
   }
 }
 
@@ -46,8 +48,9 @@ form {
 .form-item #user_subject option {
   width: 100%;
   padding: 0.5rem;
-  background-color: #f8f8f8;
+  background-color: #f0f0f0;
   border: none;
+  border-radius: 0.3rem;
 }
 .form-item-gender {
   display: flex;
@@ -56,7 +59,7 @@ form {
 .form-item-gender input[type="radio"] {
   width: fit-content;
   margin-right: 0.25rem;
-  background-color: #f8f8f8;
+  background-color: #f0f0f0;
   border: none;
 }
 .form-item-gender #user_gender_female {
@@ -67,4 +70,19 @@ form {
   border-radius: 0.3rem;
   border: none;
   cursor: pointer;
+  background-color: #969dff;
+  color: white;
+  font-weight: 800;
+}
+
+@media only screen and (max-width: 1240px) {
+    .new-container {
+        overflow-y: auto;
+    }
+    .form-item-flex {
+        flex-direction: column;
+    }
+    .new-container {
+        height: 100%;
+    }
 }

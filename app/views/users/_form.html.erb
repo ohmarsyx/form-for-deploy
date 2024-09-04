@@ -1,25 +1,25 @@
 <div class="form-container">
   <%= render partial: 'back' %>
-  <h1>Register From</h1>
+  <h1>Register Form</h1>
   <%= form_with model: @user, local: true do |form| %>
     <div class="form-items-container">
       <div class="form-item-flex">
         <div class="form-item">
-          <%= form.label :first_name, "First Name" %><br>
+          <%= form.label :first_name, "First Name" %>
           <%= form.text_field :first_name %>
         </div>
         <div class="form-item">
-          <%= form.label :last_name, "Last Name" %><br>
+          <%= form.label :last_name, "Last Name" %>
           <%= form.text_field :last_name %>
         </div>
       </div>
       <div class="form-item-flex">
         <div class="form-item">
-          <%= form.label :birthday %><br>
+          <%= form.label :birthday %>
           <%= form.date_field :birthday, start_year: 1800, end_year: Time.now.year %>
         </div>
         <div class="form-item">
-          <%= form.label :gender %><br>
+          <%= form.label :gender %>
           <div class="form-item-gender">
             <%= form.collection_radio_buttons :gender, User.genders.keys.map { |gender| [gender.capitalize, gender] }, :last, :first%>
           </div>
@@ -27,16 +27,16 @@
       </div>
       <div class="form-item-flex">
         <div class="form-item">
-          <%= form.label :email %><br>
+          <%= form.label :email %>
           <%= form.email_field :email %>
         </div>
         <div class="form-item">
-          <%= form.label :phone %><br>
+          <%= form.label :phone %>
           <%= form.telephone_field :phone %>
         </div>
       </div>
       <div class="form-item">
-        <%= form.label :subject %><br>
+        <%= form.label :subject %>
         <%= form.select :subject, options_for_select([["Choose your subject", nil], "HTML", "CSS", "JS"], disabled: "Choose your subject") %>
       </div>
     </div>
