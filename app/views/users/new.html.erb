@@ -14,7 +14,7 @@
   </div>
   <div>
     <%= form.label :gender %><br>
-    <%= form.collection_radio_buttons :gender, User.genders, :first, :first %>
+    <%= form.collection_radio_buttons :gender, User.genders.keys.map { |gender| [gender.capitalize, gender] }, :last, :first %>
   </div>
   <div>
     <%= form.label :email %><br>

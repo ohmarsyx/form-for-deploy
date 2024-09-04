@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-  enum gender: [:Male, :Female]
+  enum gender: { male: 'Male', female: 'Female'}
 end

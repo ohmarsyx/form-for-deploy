@@ -2,6 +2,7 @@
 <ul>
   <% @users.each do |user| %>
     <li><%= user.first_name %> <%= user.last_name %></li>
+    <li><%= user.gender %></li>
     <li>
       <%= link_to "Destroy", user_path(user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
     </li>
