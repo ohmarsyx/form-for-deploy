@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .back-link-container {
   display: flex;
   align-items: center;
@@ -13,6 +20,16 @@
 .back-link {
   text-decoration: none;
   color: inherit;
+}
+
+.new-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
 }
 
 ul {

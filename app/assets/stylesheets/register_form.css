@@ -1,0 +1,13 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    padding: 3rem;
+    background-color: white;
+    border-radius: 2rem;
+}
+.form-item-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
