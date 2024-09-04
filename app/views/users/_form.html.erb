@@ -3,31 +3,39 @@
   <h1>Register From</h1>
   <%= form_with model: @user, local: true do |form| %>
     <div class="form-items-container">
-      <div>
-        <%= form.label :first_name %><br>
-        <%= form.text_field :first_name %>
+      <div class="form-item-flex">
+        <div class="form-item">
+          <%= form.label :first_name %><br>
+          <%= form.text_field :first_name %>
+        </div>
+        <div class="form-item">
+          <%= form.label :last_name %><br>
+          <%= form.text_field :last_name %>
+        </div>
       </div>
-      <div>
-        <%= form.label :last_name %><br>
-        <%= form.text_field :last_name %>
+      <div class="form-item-flex">
+        <div class="form-item">
+          <%= form.label :birthday %><br>
+          <%= form.date_field :birthday, start_year: 1800, end_year: Time.now.year %>
+        </div>
+        <div class="form-item">
+          <%= form.label :gender %><br>
+          <div class="form-item-gender">
+            <%= form.collection_radio_buttons :gender, User.genders.keys.map { |gender| [gender.capitalize, gender] }, :last, :first%>
+          </div>
+        </div>
       </div>
-      <div>
-        <%= form.label :birthday %><br>
-        <%= form.date_field :birthday, start_year: 1800, end_year: Time.now.year %>
+      <div class="form-item-flex">
+        <div class="form-item">
+          <%= form.label :email %><br>
+          <%= form.email_field :email %>
+        </div>
+        <div class="form-item">
+          <%= form.label :phone %><br>
+          <%= form.telephone_field :phone %>
+        </div>
       </div>
-      <div>
-        <%= form.label :gender %><br>
-        <%= form.collection_radio_buttons :gender, User.genders.keys.map { |gender| [gender.capitalize, gender] }, :last, :first %>
-      </div>
-      <div>
-        <%= form.label :email %><br>
-        <%= form.email_field :email %>
-      </div>
-      <div>
-        <%= form.label :phone %><br>
-        <%= form.telephone_field :phone %>
-      </div>
-      <div>
+      <div class="form-item">
         <%= form.label :subject %><br>
         <%= form.select :subject, ["HTML", "CSS", "JS"] %>
       </div>

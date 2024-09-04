@@ -11,3 +11,22 @@
     display: grid;
     grid-template-columns: repeat(2,1fr);
 }
+.form-item-flex {
+    display: flex;
+}
+.form-item {
+    width: 100%;
+}
+.form-item-flex .form-item input, .form-item #user_subject {
+    width: 100%;
+}
+.form-item-gender {
+    display: flex;
+}
+.form-item-gender input[type="radio"] {
+    width: fit-content;
+    margin-right: 0.25rem;
+}
+.form-item-gender #user_gender_female {
+    margin-left: 1rem;
+}
