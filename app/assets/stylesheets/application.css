@@ -9,7 +9,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .back-link-container {
@@ -43,41 +43,54 @@ ul {
   display: flex;
   gap: 1rem;
   padding: 1rem 0;
+  flex-wrap: wrap;
+  justify-content: center;
   li {
     list-style: none;
   }
   .ul-container {
     display: flex;
     flex-direction: row;
+    min-width: 300px;
     gap: 1rem;
+    padding: 1rem 2rem 1rem 1rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 1rem;
+    justify-content: center;
   }
 }
 .index-container {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
 }
 .register-button {
-    width: 200px;
-    padding: 1rem 2rem;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-    background-color: #969dff;
-    color: white;
-    font-weight: 800;
-    text-decoration: none;
+  width: 200px;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  background-color: #969dff;
+  color: white;
+  font-weight: 800;
+  text-decoration: none;
+  justify-content: center;
 }
 .destroy-button {
-    display: flex;
-    margin: 1rem 0;
-    padding: 0.5rem 2rem;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-    background-color: #ff9696;
-    color: white;
-    font-weight: 800;
-    text-decoration: none;
+  display: flex;
+  margin: 1rem 0;
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  background-color: #ff9696;
+  color: white;
+  font-weight: 800;
+  text-decoration: none;
+  justify-content: center;
+}
+.name-text {
+    font-size: 1.25rem;
+    font-weight: 600;
 }
