@@ -10,9 +10,10 @@ form {
   background-color: white;
   border-radius: 2rem;
   gap: 2rem;
-  min-width: 400px;
+  min-width: 360px;
   width: 40%;
   max-width: 800px;
+  overflow-y: auto;
 }
 .form-items-container {
   width: 100%;
@@ -76,13 +77,17 @@ form {
 }
 
 @media only screen and (max-width: 1240px) {
+    .form-container h1 {
+        font-size: 2rem;
+    }
     .new-container {
         overflow-y: auto;
+        height: 100%;
     }
     .form-item-flex {
         flex-direction: column;
     }
-    .new-container {
-        height: 100%;
+    .form-container {
+        border-radius: 0;
     }
 }
