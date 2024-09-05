@@ -114,6 +114,7 @@ ul {
   padding: 1rem;
   justify-content: center;
   align-items: center;
+  background-color: #ff9696;
 }
 
 .show-box {
@@ -122,12 +123,14 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
+  color: white;
 }
 .show-button-container {
   display: flex;
   gap: 0.5rem;
   justify-content: center;
+  width: 100%;
 }
 .title-card {
   font-weight: 600;
@@ -145,11 +148,22 @@ ul {
   }
 }
 
+@media only screen and (max-width: 990px) {
+  .show-box {
+    width: 100%;
+  }
+}
 @media only screen and (max-width: 740px) {
   ul {
     grid-template-columns: repeat(1, 1fr);
   }
   .show-box {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .show-button-container {
+    flex-direction: column;
   }
 }
