@@ -18,10 +18,17 @@ ENV RAILS_ENV="production" \
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
-# Install packages needed to build gems
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libvips pkg-config
-
+# Install packages needed to build gems and precompile assets
+RUN apk add --no-cache \
+    build-base \
+    git \
+    postgresql-dev \
+    nodejs \
+    yarn \
+    vips-dev \
+    tzdata \
+    gcompat
+    
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
