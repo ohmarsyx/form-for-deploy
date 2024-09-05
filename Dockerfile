@@ -40,6 +40,7 @@ RUN bundle exec bootsnap precompile app/ lib/
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
+
 # Final stage for app image
 FROM base
 
@@ -52,6 +53,10 @@ RUN apk add --no-cache \
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
+
+# Copy entrypoint script if needed
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+RUN chmod +x /usr/local/bin/docker-entrypoint
 
 # Run and own only the runtime files as a non-root user for security
 RUN adduser -h /rails -s /bin/sh -D rails && \
