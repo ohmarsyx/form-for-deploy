@@ -23,7 +23,6 @@ RUN apk add --no-cache \
     build-base \
     git \
     nodejs \
-    yarn \
     vips-dev \
     tzdata \
     gcompat
