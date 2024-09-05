@@ -34,7 +34,6 @@ jobs:
     deploy:
       runs-on: ubuntu-latest
       steps:
-        # Deployment step
         - name: Deploy to Remote Server
           uses: appleboy/ssh-action@v0.1.5
           with:
@@ -43,8 +42,7 @@ jobs:
             key: ${{ secrets.SSH_PRIVATE_KEY }}
             port: 22
             script: |
-              docker pull ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
-              docker stop my-container || true
-              docker rm my-container || true
-              docker run -d --name my-container -p 80:80 ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+              sudo docker compose pull
+              sudo docker compose down
+              sudo docker compose up -d
         
