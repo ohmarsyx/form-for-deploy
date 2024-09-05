@@ -125,6 +125,9 @@ ul {
   gap: 0.5rem;
   justify-content: center;
 }
+.title-card {
+    font-weight: 600;
+}
 
 @media only screen and (max-width: 1440px) {
     ul {
