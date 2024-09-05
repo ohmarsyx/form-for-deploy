@@ -63,8 +63,9 @@ RUN adduser -h /rails -s /bin/sh -D rails && \
     chown -R rails:rails db log storage tmp
 USER rails:rails
 # Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+# ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD ["./bin/rails", "server"]
+# CMD ["./bin/rails", "server"]
+CMD ["./bin/rails", "db:prepare", "&&", "./bin/rails", "server", "-b", "0.0.0.0"]
