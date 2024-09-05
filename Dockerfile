@@ -1,3 +1,5 @@
+# syntax = docker/dockerfile:1
+
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=3.3.1
 FROM ruby:$RUBY_VERSION-alpine AS base
@@ -12,7 +14,7 @@ ENV RAILS_ENV="production" \
     BUNDLE_WITHOUT="development"
 
 # Throw-away build stage to reduce size of final image
-FROM base as build
+FROM base AS build
 
 # Install packages needed to build gems and precompile assets
 RUN apk add --no-cache \
@@ -21,9 +23,7 @@ RUN apk add --no-cache \
     postgresql-dev \
     nodejs \
     yarn \
-    vips-dev \
-    tzdata \
-    gcompat
+    vips-dev
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -40,7 +40,6 @@ RUN bundle exec bootsnap precompile app/ lib/
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
-
 # Final stage for app image
 FROM base
 
@@ -48,20 +47,17 @@ FROM base
 RUN apk add --no-cache \
     postgresql-client \
     vips \
-    tzdata \
-    gcompat
+    tzdata
+
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
-
-# Copy entrypoint script if needed
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint
-RUN chmod +x /usr/local/bin/docker-entrypoint
 
 # Run and own only the runtime files as a non-root user for security
 RUN adduser -h /rails -s /bin/sh -D rails && \
     chown -R rails:rails db log storage tmp
 USER rails:rails
+
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
