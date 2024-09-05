@@ -22,7 +22,6 @@ FROM base as build
 RUN apk add --no-cache \
     build-base \
     git \
-    postgresql-dev \
     nodejs \
     yarn \
     vips-dev \
@@ -50,7 +49,6 @@ FROM base
 
 # Install packages needed for deployment
 RUN apk add --no-cache \
-    postgresql-client \
     vips \
     tzdata \
     gcompat \
