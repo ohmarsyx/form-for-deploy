@@ -69,6 +69,7 @@ ul {
   overflow-y: auto;
 }
 .button {
+  display: flex;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
   border: none;
@@ -77,6 +78,8 @@ ul {
   font-weight: 800;
   text-decoration: none;
   justify-content: center;
+  text-align: center;
+  align-items: center;
 }
 .register-button {
   background-color: #f1f2ff;
@@ -126,23 +129,26 @@ ul {
   justify-content: center;
 }
 .title-card {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 1440px) {
-    ul {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media only screen and (max-width: 1080px) {
-    ul {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media only screen and (max-width: 740px) {
-    ul {
-        grid-template-columns: repeat(1, 1fr);
-    }
+  ul {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .show-box {
+    width: 100%;
+  }
 }
