@@ -14,7 +14,7 @@
             <li><span class="title-card">Phone:</span> <%= user.phone %></li>
             <li><span class="title-card">Subject:</span> <%= user.subject %></li>
           </div>
-          <p><%= link_to "Delete", user_path(user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },class: "destroy-button" %></p>
+          <p><%= link_to "Delete", modal_user_path(user), data: { turbo_frame: "modal" }, class: "destroy-button" %></p>
         </div>
       </div>
     <% end %>

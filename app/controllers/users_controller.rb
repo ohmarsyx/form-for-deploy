@@ -6,6 +6,16 @@ class UsersController < ApplicationController
   def show
   end
 
+  def modal
+    @user = User.find(params[:id])
+    
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', partial: 'modal', locals: { user: @user }) }
+      format.html 
+    end
+  end
+  
+
   def new
     @user = User.new
   end

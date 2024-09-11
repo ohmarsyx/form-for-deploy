@@ -88,6 +88,9 @@ ul {
 .manage-button {
   background-color: #969dff;
 }
+.confirm-button {
+  background-color: #ff9696;
+}
 .destroy-button {
   display: flex;
   margin: 1rem 0;
@@ -135,6 +138,40 @@ ul {
 .title-card {
   font-weight: 600;
 }
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: backdrop */
+}
+
+.modal-content {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+
 
 @media only screen and (max-width: 1440px) {
   ul {
