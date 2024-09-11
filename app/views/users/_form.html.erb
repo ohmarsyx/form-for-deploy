@@ -7,21 +7,41 @@
         <div class="form-item">
           <%= form.label :first_name, "First Name" %>
           <%= form.text_field :first_name %>
+          <div class="err-message">
+            <% @user.errors.full_messages_for(:first_name).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
         <div class="form-item">
           <%= form.label :last_name, "Last Name" %>
           <%= form.text_field :last_name %>
+          <div class="err-message">
+            <% @user.errors.full_messages_for(:last_name).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
       </div>
       <div class="form-item-flex">
         <div class="form-item">
           <%= form.label :birthday %>
-          <%= form.date_field :birthday, start_year: 1800, end_year: Time.now.year %>
+          <%= form.date_field :birthday, max: 18.years.ago.to_date %>
+          <div class="err-message">
+            <% @user.errors.full_messages_for(:birthday).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
         <div class="form-item">
           <%= form.label :gender %>
           <div class="form-item-gender">
             <%= form.collection_radio_buttons :gender, User.genders.keys.map { |gender| [gender.capitalize, gender] }, :last, :first%>
+          </div>
+          <div class="err-message">
+            <% @user.errors.full_messages_for(:gender).each do |message| %>
+              <%= message %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -29,15 +49,30 @@
         <div class="form-item">
           <%= form.label :email %>
           <%= form.email_field :email %>
+          <div class="err-message">
+            <% @user.errors.full_messages_for(:email).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
         <div class="form-item">
           <%= form.label :phone %>
           <%= form.telephone_field :phone %>
+          <div class="err-message">
+            <% @user.errors.full_messages_for(:phone).each do |message| %>
+              <%= message %>
+            <% end %>
+          </div>
         </div>
       </div>
       <div class="form-item">
         <%= form.label :subject %>
         <%= form.select :subject, options_for_select([["Choose your subject", nil], "HTML", "CSS", "JS"], disabled: "Choose your subject") %>
+        <div class="err-message">
+          <% @user.errors.full_messages_for(:subject).each do |message| %>
+            <%= message %>
+          <% end %>
+        </div>
       </div>
     </div>
     <div>

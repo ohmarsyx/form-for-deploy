@@ -76,6 +76,12 @@ form {
   color: white;
   font-weight: 800;
 }
+.field_with_errors > input{
+  width: 100%;
+}
+.form-item > .err-message {
+  color: red;
+}
 
 @media only screen and (max-width: 1240px) {
     .form-container h1 {

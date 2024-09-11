@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_path
     else
-      format.html { render :new, status: :unprocessable_entity }
+      render :new, status: :unprocessable_entity 
     end
   end
 
