@@ -37,13 +37,19 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-
+  
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace('cards', partial: 'cards', locals: { user: @user }) }
-      format.html 
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace('cards', partial: 'cards', locals: { users: User.all }),
+          turbo_stream.remove('modal')
+        ]
+      end
+      format.html { redirect_to users_path }
     end
-    # redirect_to users_path, status: :see_other
   end
+  
+  
 
   private
   def user_params

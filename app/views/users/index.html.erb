@@ -3,20 +3,24 @@
   <h1>Users</h1>
   <div class="main-ul">
     <ul>
-      <% @users.each_with_index do |user, index| %>
-        <div class="ul-container">
-          <div style="display: flex; height: 100%; width: 100%; justify-content: space-between; gap: 1rem">
-            <div class="list-info">
-              <li class="name-text">Name: <%= user.first_name %> <%= user.last_name %></li>
-              <li><span class="title-card">BOD:</span> <%= user.birthday %></li>
-              <li><span class="title-card">Gender:</span> <%= user.gender %></li>
-              <li><span class="title-card">Email:</span> <%= user.email %></li>
-              <li><span class="title-card">Phone:</span> <%= user.phone %></li>
-              <li><span class="title-card">Subject:</span> <%= user.subject %></li>
+      <% if @users.present? %>
+        <% @users.each do |user| %>
+          <div class="ul-container">
+            <div style="display: flex; height: 100%; width: 100%; justify-content: space-between; gap: 1rem">
+              <div class="list-info">
+                <li class="name-text">Name: <%= user.first_name %> <%= user.last_name %></li>
+                <li><span class="title-card">BOD:</span> <%= user.birthday %></li>
+                <li><span class="title-card">Gender:</span> <%= user.gender %></li>
+                <li><span class="title-card">Email:</span> <%= user.email %></li>
+                <li><span class="title-card">Phone:</span> <%= user.phone %></li>
+                <li><span class="title-card">Subject:</span> <%= user.subject %></li>
+              </div>
+              <p><%= link_to "Delete", modal_user_path(user), data: { turbo_frame: "modal" }, class: "destroy-button" %></p>
             </div>
-            <p><%= link_to "Delete", modal_user_path(user), data: { turbo_frame: "modal" }, class: "destroy-button" %></p>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+        <div></div>
       <% end %>
     </ul>
   </div>
