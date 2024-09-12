@@ -1,4 +1,4 @@
-<div class="index-container">
+<div class="index-container" id="cards">
   <%= render partial: 'back' %>
   <h1>Users</h1>
   <ul>
@@ -19,4 +19,5 @@
       </div>
     <% end %>
   </ul>
+  <%= turbo_frame_tag "modal" %>
 </div>

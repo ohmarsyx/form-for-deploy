@@ -1,0 +1,29 @@
+<div class="index-container" id="cards">
+  <%= render partial: 'back' %>
+  <h1>Users</h1>
+  <ul>
+    <% if @users.present? %>
+      <ul>
+        <% @users.each_with_index do |user, index| %>
+          <div class="ul-container">
+            <p style="font-size: 1.25rem; font-weight: 600"><%= index + 1 %>)</p>
+            <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between">
+              <div class="list-info">
+                <li class="name-text">Name: <%= user.first_name %> <%= user.last_name %></li>
+                <li><span class="title-card">BOD:</span> <%= user.birthday %></li>
+                <li><span class="title-card">Gender:</span> <%= user.gender %></li>
+                <li><span class="title-card">Email:</span> <%= user.email %></li>
+                <li><span class="title-card">Phone:</span> <%= user.phone %></li>
+                <li><span class="title-card">Subject:</span> <%= user.subject %></li>
+              </div>
+              <p><%= link_to "Delete", user_path(user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "destroy-button" %></p>
+            </div>
+          </div>
+        <% end %>
+      </ul>
+    <% else %>
+      <div></div>
+    <% end %>
+  </ul>
+  <%= turbo_frame_tag "modal" %>
+</div>

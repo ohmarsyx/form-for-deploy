@@ -38,7 +38,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to "/users", status: :see_other
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace('cards', partial: 'cards', locals: { user: @user }) }
+      format.html 
+    end
+    # redirect_to users_path, status: :see_other
   end
 
   private
