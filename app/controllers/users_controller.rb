@@ -14,6 +14,14 @@ class UsersController < ApplicationController
       format.html 
     end
   end
+
+  def registration_modal
+    @users = User.all 
+    respond_to do |format|
+      format.turbo_stream { render partial: "users/modal", locals: { user: @user } }
+      format.html { render partial: "users/modal", locals: { user: @user } }      
+    end
+  end
   
 
   def new
@@ -42,7 +50,6 @@ class UsersController < ApplicationController
       format.turbo_stream do
         render turbo_stream: turbo_stream.append_all("body", "<script>window.location.reload();</script>")
       end
-      
       format.html { redirect_to users_path }
     end
   end

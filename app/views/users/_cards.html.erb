@@ -1,6 +1,8 @@
 <div class="index-container" id="cards">
   <%= render partial: 'back' %>
-  <h1>Users</h1>
+  <div style="display: flex; align-items: center; width: 100%; justify-content: space-between">
+    <h1>Users</h1>
+  </div>
   <div class="main-ul">
     <ul>
       <% if @users.present? %>

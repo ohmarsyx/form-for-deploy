@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get 'modal'
+      get 'registration-modal'
     end
   end
 
