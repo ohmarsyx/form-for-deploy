@@ -14,7 +14,6 @@ form {
   min-width: 360px;
   width: 40%;
   max-width: 800px;
-  overflow-y: auto;
 }
 .form-items-container {
   width: 100%;
