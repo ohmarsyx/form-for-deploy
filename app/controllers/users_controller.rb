@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    @user = User.new
   end
 
   def show
@@ -14,16 +15,7 @@ class UsersController < ApplicationController
       format.html 
     end
   end
-
-  def registration_modal
-    @users = User.all 
-    respond_to do |format|
-      format.turbo_stream { render partial: "users/modal", locals: { user: @user } }
-      format.html { render partial: "users/modal", locals: { user: @user } }      
-    end
-  end
   
-
   def new
     @user = User.new
   end
@@ -36,7 +28,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to root_path
+      redirect_back(fallback_location: users_path)
     else
       render :new, status: :unprocessable_entity 
     end
@@ -45,7 +37,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-  
+
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.append_all("body", "<script>window.location.reload();</script>")
@@ -54,8 +46,6 @@ class UsersController < ApplicationController
     end
   end
   
-  
-
   private
   def user_params
     params.require(:user).permit(:first_name, :last_name, :birthday, :gender, :email, :phone, :subject)

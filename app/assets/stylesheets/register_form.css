@@ -15,6 +15,15 @@ form {
   width: 40%;
   max-width: 800px;
 }
+.form-container-modal {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  background-color: white;
+  border-radius: 2rem;
+  gap: 2rem;
+  width: 100%;
+}
 .form-items-container {
   width: 100%;
   display: flex;
@@ -46,6 +55,7 @@ form {
 }
 
 .form-item #user_subject,
+#subject,
 .form-item #user_subject option {
   width: 100%;
   padding: 0.5rem;
@@ -75,7 +85,7 @@ form {
   color: white;
   font-weight: 800;
 }
-.field_with_errors > input{
+.field_with_errors > input {
   width: 100%;
 }
 .form-item > .err-message {
@@ -83,18 +93,18 @@ form {
 }
 
 @media only screen and (max-width: 1240px) {
-    .form-container h1 {
-        font-size: 2rem;
-    }
-    .new-container {
-        overflow-y: auto;
-        height: 100%;
-    }
-    .form-item-flex {
-        flex-direction: column;
-    }
-    .form-container {
-        border-radius: 0;
-        overflow-y: auto;
-    }
+  .form-container h1 {
+    font-size: 2rem;
+  }
+  .new-container {
+    overflow-y: auto;
+    height: 100%;
+  }
+  .form-item-flex {
+    flex-direction: column;
+  }
+  .form-container {
+    border-radius: 0;
+    overflow-y: auto;
+  }
 }

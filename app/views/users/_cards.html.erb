@@ -1,7 +1,8 @@
-<div class="index-container" id="cards">
+<div class="index-container" data-controller="registration-modal" id="cards">
   <%= render partial: 'back' %>
   <div style="display: flex; align-items: center; width: 100%; justify-content: space-between">
     <h1>Users</h1>
+    <button class="button primary-button" type="button" data-action="click->registration-modal#open">Add user</button>
   </div>
   <div class="main-ul">
     <ul>
@@ -27,4 +28,5 @@
     </ul>
   </div>
   <%= turbo_frame_tag "modal" %>
+  <%= render partial: 'registration_modal' %>
 </div>
