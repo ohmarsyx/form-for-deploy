@@ -29,7 +29,7 @@ RUN apk add --no-cache \
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
-RUN bundle install --without development && \
+RUN bundle install --jobs 4 --retry 3 --without development test && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
 
