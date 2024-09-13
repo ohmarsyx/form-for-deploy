@@ -39,8 +39,9 @@
         <%= form.select :subject, options_for_select([["Choose your subject", nil], "HTML", "CSS", "JS"], disabled: "Choose your subject") %>
       </div>
     </div>
-    <div>
+    <div style="display: flex; gap: 1rem">
       <%= form.submit "Submit", class: "submit-button"%>
+      <button class="button" type="button" data-action="click->registration-modal#close" style="color:black">Cancel</button>
     </div>
   </div>
 <% end %>

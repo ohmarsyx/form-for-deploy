@@ -73,6 +73,7 @@ ul {
   padding: 1rem;
   gap: 1rem;
   width: 80%;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 .button {
   display: flex;
@@ -188,6 +189,7 @@ ul {
   display: none;
   width: 100%;
   height: 100%;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 
