@@ -1,64 +1,52 @@
-# Base image with specified Ruby version
-ARG RUBY_VERSION=3.3.1
-FROM ruby:$RUBY_VERSION-alpine AS base
+# syntax = docker/dockerfile:1
 
-# Set production environment variables
+ARG RUBY_VERSION=3.3.1
+FROM ruby:$RUBY_VERSION-alpine AS builder
+
+# Install build dependencies and set up environment
+RUN apk add --no-cache build-base git nodejs vips-dev tzdata gcompat && \
+    mkdir /rails && \
+    gem install bundler
+
+WORKDIR /rails
+
+# Set Rails environment
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development:test" \
-    SECRET_KEY_BASE_DUMMY="1"
+    BUNDLE_WITHOUT="development:test"
 
-# Common packages needed in all stages
-RUN apk add --no-cache \
-    vips-dev \
-    tzdata \
-    bash \
-    gcompat
-
-# Set the app's working directory
-WORKDIR /rails
-
-
-# Build stage for assets and dependencies
-FROM base as build
-
-# Install build dependencies
-RUN apk add --no-cache --virtual .build-deps \
-    build-base \
-    git \
-    nodejs
-
-# Copy Gemfiles and install gems
+# Install gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --jobs 4 --retry 3 --without development test && \
-    rm -rf /usr/local/bundle/cache
-
-# Precompile bootsnap code
-RUN bundle exec bootsnap precompile --gemfile
+    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
 
 # Copy application code and precompile assets
-COPY . . 
-RUN ./bin/rails assets:precompile
-
-# Clean up build dependencies to reduce final image size
-RUN apk del .build-deps
-
+COPY . .
+RUN bundle exec bootsnap precompile --gemfile app/ lib/ && \
+    SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
 
 # Final stage
-FROM base
+FROM ruby:$RUBY_VERSION-alpine
 
-# Copy the precompiled gems and application code from the build stage
-COPY --from=build /usr/local/bundle /usr/local/bundle
-COPY --from=build /rails /rails
+# Install runtime dependencies
+RUN apk add --no-cache vips tzdata gcompat && \
+    adduser -h /rails -s /bin/sh -D rails
 
-# Ensure proper permissions
-RUN adduser -h /rails -s /bin/sh -D rails && \
-    chown -R rails:rails db log storage tmp
+# Copy built artifacts from builder stage
+COPY --from=builder /usr/local/bundle /usr/local/bundle
+COPY --from=builder --chown=rails:rails /rails /rails
+
+# Set up environment and user
+ENV RAILS_ENV="production" \
+    BUNDLE_PATH="/usr/local/bundle" \
+    BUNDLE_WITHOUT="development:test" \
+    RAILS_SERVE_STATIC_FILES="true" \
+    RAILS_LOG_TO_STDOUT="true"
+
 USER rails:rails
+WORKDIR /rails
 
-# Expose default Rails port
+# Expose port and start the server
 EXPOSE 3000
-
-# Default command to run the server
-CMD ["./bin/rails", "db:prepare", "&&", "./bin/rails", "server", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
