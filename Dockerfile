@@ -30,8 +30,8 @@ RUN bundle exec bootsnap precompile --gemfile app/ lib/ && \
 FROM ruby:$RUBY_VERSION-alpine
 
 # Install runtime dependencies
-RUN apk add --no-cache vips tzdata gcompat && \
-    adduser -h /rails -s /bin/sh -D rails
+RUN apk add --no-cache vips tzdata gcompat bash && \
+    adduser -h /rails -s /bin/bash -D rails
 
 # Copy built artifacts from builder stage
 COPY --from=builder /usr/local/bundle /usr/local/bundle
@@ -49,4 +49,4 @@ WORKDIR /rails
 
 # Expose port and start the server
 EXPOSE 3000
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+CMD ["/bin/bash", "-c", "bundle exec rails db:prepare && bundle exec rails server -b 0.0.0.0"]
