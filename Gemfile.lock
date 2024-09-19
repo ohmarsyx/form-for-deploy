@@ -107,6 +107,8 @@ GEM
     docile (1.4.1)
     drb (2.2.1)
     erubi (1.13.0)
+    faker (3.4.2)
+      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     htmlbeautifier (1.4.3)
@@ -167,6 +169,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.1.7)
+    rack-cors (2.0.2)
+      rack (>= 2.0.0)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -309,10 +313,12 @@ DEPENDENCIES
   capybara
   database_cleaner-active_record
   debug
+  faker
   htmlbeautifier
   importmap-rails
   jbuilder
   puma (>= 5.0)
+  rack-cors
   rails (~> 7.1.4)
   rails-controller-testing
   rspec-rails (~> 6.0)

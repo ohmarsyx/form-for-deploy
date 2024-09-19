@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get "api/v1/getAllUsers", to: "users#getAllUsers"
+
   root "users#show"
 end

@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+  # index
   describe 'GET #index' do
     it 'assigns @users and @user' do
       user = User.create!(first_name: 'John', last_name: 'Doe', email: 'john@example.com', birthday: '2000-01-01', gender: "male", phone: '0987654321', subject: "CSS")
@@ -16,6 +17,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  # show
   describe 'GET #show' do
     it 'responds successfully' do
       user = User.create!(first_name: 'John', last_name: 'Doe', email: 'john@example.com', birthday: '2000-01-01', gender: "male", phone: '0987654321', subject: "CSS")
@@ -24,6 +26,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  # modal
   describe 'GET #modal' do
     let!(:user) { User.create!(first_name: 'John', last_name: 'Doe', email: 'john@example.com', birthday: '2000-01-01', gender: "male", phone: '0987654321', subject: "CSS") }
 
@@ -43,6 +46,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  # create
   describe 'POST #create' do
   context 'with valid params' do
     it 'creates a new user' do
@@ -72,6 +76,7 @@ RSpec.describe UsersController, type: :controller do
   end
 end
 
+  # destroy
   describe 'DELETE #destroy' do
     let!(:user) { User.create!(first_name: 'John', last_name: 'Doe', email: 'john@example.com', birthday: '2000-01-01', gender: "male", phone: '0987654321', subject: "CSS") }
 
@@ -95,6 +100,7 @@ end
     end
   end
 
+  # new
   describe 'GET #new' do
     before do
       get :new
@@ -105,7 +111,7 @@ end
     end
 
     it 'responds with a successful status' do
-      expect(response).to have_http_status(:success) # or :ok
+      expect(response).to have_http_status(:success)
     end
 
     it 'renders the new template' do

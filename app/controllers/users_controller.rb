@@ -7,6 +7,11 @@ class UsersController < ApplicationController
   def show
   end
 
+  def getAllUsers
+    @users = User.all
+    render json: @users
+  end
+  
   def modal
     @user = User.find(params[:id])
     
